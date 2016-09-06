@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "GitHub issue linker",
+    "version": "0.0.1",
+
+    "description": "GitHub issue linker",
+    "icons": {
+        "16": "icons/github16.png",
+        "48": "icons/github48.png",
+        "128": "icons/github128.png"
+    },
+
+    "page_action": {
+        "default_icon": {
+            "19": "icons/github19.png",
+            "38": "icons/github38.png"
+        },
+        "default_title": "GH issue linker",
+        "default_popup": "popup.html"
+    },
+
+    // Optional
+    "author": "Tomasz Łukasik",
+    "background": {
+        "scripts": ["background.js"]
+    },
+    "content_scripts": [{
+        "matches": ["https://*.github.com/*"],
+        "run_at": "document_idle",
+        "js": ["linker.js"]
+    }],
+    "offline_enabled": false,
+    "options_ui": {
+        "chrome_style": true,
+        "page": "options.html"
+    },
+    "permissions": ["activeTab", "webRequest", "https://*.github.com/"],
+    "short_name": "GH linker"
+}
